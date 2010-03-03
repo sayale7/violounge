@@ -1,0 +1,18 @@
+<% form_for(@tag) do |f| %>
+<%= f.error_messages %>
+
+<p>
+	<strong><%= f.label :german_name %></strong><br />
+	<%= f.text_field :german_name, :class => 'tb' %>
+</p>
+
+<p>
+	<strong><%= f.label :english_name %></strong><br />
+	<%= f.text_field :english_name, :class => 'tb' %>
+</p>
+<%= f.hidden_field :taggable_type, :value  => @taggable_type %>
+
+<p>
+	<%= f.submit 'Update' %>
+</p>
+<% end %>

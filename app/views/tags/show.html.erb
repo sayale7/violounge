@@ -1,0 +1,13 @@
+<h1><%= t('tag.names') %></h1>
+<br/>
+<p>
+	<b><%= t('tag.german_name') %></b>
+	<%=h @tag.tag_names.find_by_language('de').name %>
+</p>
+<p>
+	<b><%= t('tag.english_name') %></b>
+	<%=h @tag.tag_names.find_by_language('en').name %>
+</p>
+
+<%= link_to 'Edit', edit_tag_path(@tag) %> |
+<%= link_to 'Back', tags_path %>

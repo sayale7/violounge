@@ -1,0 +1,39 @@
+
+<script type="text/javascript" charset="utf-8">
+	$(document).ready(function(){
+		$('#date_format').remove();
+		$("#from").datepicker();
+		$("#to").datepicker();
+	});
+</script>
+<% title t'post.my_posts' %>
+<h1><%= t'post.my_posts' %></h1>
+
+<% form_tag my_post_search_path, :id  => 'post_search',  :method => :get do %>
+
+<p> 
+	<%= t('common.from') %>
+	<input type="text" id="from" name="from" class="tb_datepicker"/>
+	<%= t('common.to') %>
+	<input type="text" id="to" name="to" class="tb_datepicker"/>
+	<span id="date_format"> (TT/MM/JJJJ)</span>
+	<%= submit_tag t('common.clear'), :id  => 'clear_tb_datepicker', :class  => 'hidden' %>
+</p>
+<p>	
+	<%= t('post.search_field_description') %><br/>
+	<%= text_field_tag :search, params[:search], :class  => 'tb_extended', :autocomplete => "off" %> 
+	<%= submit_tag t('common.search'), :id  => 'search_button' %>
+</p>
+
+<% end %>
+
+
+
+<div id="posts">
+<%= render 'my_posts' %>
+</div>
+
+<% if current_user %>
+<br/>
+<%= link_to t('post.new'), new_post_path %>
+<% end %>

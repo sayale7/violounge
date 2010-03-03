@@ -1,0 +1,38 @@
+<% title @post.title %>
+
+<div class="tags">
+	<p>
+		<%= link_to (t('post.all_of_this_user').to_s << " " << User.find(@post.user_id).login.to_s), user_posts_url(@post.user_id) %>
+	</p>
+	<p>
+		<%= image_tag("feed.gif", :border=>0, :width  => 12) %>
+		<%= link_to t('post.abo'), formatted_user_posts_url(:user_id => @post.user_id, :format  => :atom) %>
+	</p>
+	<h3>Tags</h3>
+	<p>
+		<%= @tags.collect {|tag| link_to(tag.name, "/posts?tag=#{tag.id}")}.join(", ") %>
+	</p>
+</div>
+
+<div class="post">
+<%= render :partial => @post %>
+<div class="clear">
+<% if can? :manage, @post %>
+	<p>
+		<%= link_to t('post.edit'), edit_post_path(@post) %> | <%= link_to t('common.delete'), @post, :method => :delete, :confirm => t("common.confirm") %>
+	</p>
+	<% end %>
+</div>
+</div>
+
+
+<div class="left">
+	<h2><%= t('post.new_comment') %></h2>
+
+	<%= render '/comments/form' %>
+
+	<div id="comments">
+		<%= render :partial => '/comments/create' %>
+	</div>
+</div>
+

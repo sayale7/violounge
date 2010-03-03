@@ -1,0 +1,101 @@
+/*
+  Calendar theme, based on Geoffrey Grosenbach http://nubyonrails.com
+  
+  Colors: 
+    Tan: ecede2 
+    Turq: 003355
+    Cream: ffffdd
+*/
+
+.calendar {
+  margin: auto;
+  width: 625px;
+}
+
+.calendar thead {
+  background-color: transparent;
+}
+
+.calendar th {
+  padding-bottom: 5px;
+  background:#336666;
+}
+.calendar th a{
+  color: #fff;
+}
+
+th.monthName {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.dayName th {
+  font-size: 11px;
+  padding-top: 3px;
+  padding-bottom: 10px;
+  background:#336666;
+  color: #fff;
+}
+
+.otherMonth, .day, .specialDay {
+  font-size: 11px;
+  text-align: center;
+  padding: 2px 0;
+}
+
+.otherMonth {
+  color: #d5d5d5;
+  background-color: white;
+}
+
+.day, .specialDay {
+  background-color: #ecede2;
+}
+.specialDay {
+  color: white;
+}
+.specialDay a, .specialDay a:visited, .specialDay a:hover {
+  color: white;
+  text-decoration: none;
+  padding: 1em;
+}
+.specialDay a:hover {
+  color: white;
+  background-color: black;
+}
+.weekendDay {
+  background-color: #ffffdd; 
+}
+.today{
+	background-color: #333;
+	color:white;
+}
+
+.beginning_of_week {
+  padding-left: 0;
+}
+
+/* Event blocks */
+.events { 
+  position: relative; 
+  border:solid thin silver;
+}
+ 
+.event {
+  overflow: hidden;
+  text-align: left;
+  position: absolute;
+  font-size: 9px;
+  line-height: 16px;
+}
+
+.event :hover {
+  background-color: #2EAC6A;
+}
+ 
+.event div { 
+  cursor: pointer;
+  padding-left: 8px; 
+  color:#ffffff; 
+  text-decoration: none;
+}

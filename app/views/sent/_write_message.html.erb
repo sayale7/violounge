@@ -1,0 +1,61 @@
+<script type="text/javascript">
+$(document).ready(function(){  
+	$(".wojs").remove();
+	$("ul#js").prepend("Empfänger * <input type='text' id='tokenize' name='blah2'/><li></li>	");
+	
+	$("#tokenize").tokenInput("/all_users", {
+		classes: {
+			tokenList: "token-input-list-facebook",
+			token: "token-input-token-facebook",
+			tokenDelete: "token-input-delete-token-facebook",
+			selectedToken: "token-input-selected-token-facebook",
+			highlightedToken: "token-input-highlighted-token-facebook",
+			dropdown: "token-input-dropdown-facebook",
+			dropdownItem: "token-input-dropdown-item-facebook",
+			dropdownItem2: "token-input-dropdown-item2-facebook",
+			selectedDropdownItem: "token-input-selected-dropdown-item-facebook",
+			inputToken: "token-input-input-token-facebook"
+		}
+	});
+	
+	
+	$("#js").live("mouseover", function() {
+		var i = 0;
+		$(".token-input-delete-token-facebook").each(function(){
+			i ++;
+		});
+		if(i == 0 || ($(".tb").attr("value") == "") || ($(".tb_area").attr("value") == "")){
+			$(".to_submit").attr("disabled", true);
+		}else{
+			$(".to_submit").attr("disabled", false);
+		}
+	});
+	
+});
+</script>
+<%= error_messages_for :message %>
+<% form_for :message, :url => {:controller => "sent", :action => "create"} do |f| %>
+<ul id="js">
+	<li class="wojs">
+		Empfänger *
+		<br/>
+		<br/>
+		<%= checklist "message[to][]", @users_hash %>
+
+	</li>
+
+	<li>
+		Betreff *<br/>
+		<%= f.text_field :subject, :class => "tb"%>
+	</li>
+	<li>
+		Nachricht *<br/>
+		<%= f.text_area :body, :class => "tb_area" %>
+		<%= f.hidden_field :author_id, :value  => current_user.id %>
+	</li>
+	<li>
+		<%= submit_tag "Send", :class => 'to_submit' %>
+	</li>
+</ul>  	
+	* <%= t("common.duty") %>
+<% end %>

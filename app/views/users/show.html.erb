@@ -1,0 +1,213 @@
+<% title t('user.my_profile') %>
+<% if current_user %>
+<%= render :partial => 'write_message' %>
+<% end %>
+
+
+<div class="personal_info">
+	<% if current_user && !@current_one %>
+	<div class="friendship_links_top">
+		<%= render 'friendship_links_top' %>
+	</div>	
+	<% end %>
+	<h1><%= t "user.common" %></h1>
+	<% if current_user && @current_one %>
+		<%= link_to_unless_current t("common.edit"), :controller => "user_commons", :action => "edit", :id => current_user.id %>
+	<% end %>
+	<table>
+		<% if !(@user_common.gender.to_s == "") %>
+		<tr>
+			<td style="font-weight:bold;">
+				<%= t "user.gender" %>
+				<% ":" %>
+			</td>
+			<td style="width:300px;">
+				<%= @user_common.gender %>
+			</td>
+		</tr>
+		<% end %>
+		<% if !(@user_common.title.to_s == "") %>
+		<tr>
+			<td style="font-weight:bold;">
+				<%= t "user.title" %>
+				<% ":" %>
+			</td>
+			<td style="width:300px;">
+				<%= @user_common.title %>
+			</td>
+		</tr>
+		<% end %>
+		<% if !((@user_common.firstname.to_s == "") && (@user_common.lastname.to_s == "")) %>
+		<tr>
+			<td style="font-weight:bold;">
+				<%= t "user.name" %>
+				<% ":" %>
+			</td>
+			<td style="width:300px;">
+				<%= @user_common.firstname %>
+				<%= " " %>
+				<%= @user_common.lastname %>
+			</td>
+		</tr>
+		<% end %>
+		<% if !(@user_common.street.to_s == "") %>
+		<tr>
+			<td style="font-weight:bold;">
+				<%= t "user.street" %>
+				<% ":" %>
+			</td>
+			<td style="width:300px;">
+				<%= @user_common.street %>
+			</td>
+		</tr>
+		<% end %>
+		<% if !(@user_common.zip.to_s == "") %>
+		<tr>
+			<td style="font-weight:bold;">
+				<%= t "user.zip" %>
+				<% ":" %>
+			</td>
+			<td style="width:300px;">
+				<%= @user_common.zip %>
+			</td>
+		</tr>
+		<% end %>
+		<% if !(@user_common.city.to_s == "") %>
+		<tr>
+			<td style="font-weight:bold;">
+				<%= t "user.city" %>
+				<% ":" %>
+			</td>
+			<td style="width:300px;">
+				<%= @user_common.city %>
+			</td>
+		</tr>
+		<% end %>
+		<% if !(@user_common.district.to_s == "") %>
+		<tr>
+			<td style="font-weight:bold;">
+				<%= t "user.district" %>
+				<% ":" %>
+			</td>
+			<td style="width:300px;">
+				<%= @user_common.district %>
+			</td>
+		</tr>
+		<% end %>
+		<% if !(@user_common.administrative_area.to_s == "") %>
+		<tr>
+			<td style="font-weight:bold;">
+				<%= t "user.administrative_area" %>
+				<% ":" %>
+			</td>
+			<td style="width:300px;">
+				<%= @user_common.administrative_area %>
+			</td>
+		</tr>
+		<% end %>
+		<% if !(@user_common.state.to_s == "") %>
+		<tr>
+			<td style="font-weight:bold;">
+				<%= t "user.state" %>
+				<% ":" %>
+			</td>
+			<td style="width:300px;">
+				<%= @user_common.state %>
+			</td>
+		</tr>
+		<% end %>
+		<% if !(@user_common.www.to_s == "") %>
+		<tr>
+			<td style="font-weight:bold;">
+				<%= t "user.www" %>
+				<% ":" %>
+			</td>
+			<td style="width:300px;">
+				<%= link_to @user_common.www, "http://#{@user_common.www}", :popup  => true %>
+			</td>
+		</tr>
+		<% end %>
+		<% if !(@user_common.phone.to_s == "") %>
+		<tr>
+			<td style="font-weight:bold;">
+				<%= t "user.phone" %>
+				<% ":" %>
+			</td>
+			<td>
+				<%= @user_common.phone %>
+			</td>
+		</tr>
+		<% end %>
+	</table>
+	
+</div>
+
+<div class="info_and_entry">
+	<div class="account_info">
+		<div class="profile_image">
+		    <% if @profile_image %>
+				<a href='<%= @profile_image.avatar.url %>' rel='shadowbox'><%= image_tag @profile_image.avatar.url(:small) %></a>
+			 <% else %>
+			 <%= image_tag '/images/anonymous.jpg', :width  => 150 %>
+		    <% end %>
+		</div>
+		<ul>
+			<% if current_user && @current_one %>
+			<li>
+				<%= link_to t('user.delete'), destroy_user_path, :confirm  => t("common.confirm") %>
+			</li>
+			<% end %>
+			<li>
+				<%= t "common.login_name" %>: <%=h @user.login %>
+			</li>
+			<li>
+				<%= t "common.email" %>: <%= mail_to h@user.email %>
+			</li>
+			<% if current_user %>
+			<li>
+				<div id="button_popup">
+					<a href="/sent/new?user=<%= @user.id %>"><%= t("common.send_message_to_user") %></a>
+				</div>
+			</li>
+			<% end %>
+			<% unless @user.photo_albums.empty? %>
+			<li>
+				<%= link_to (t('photo_album.of_this_user').to_s << ' ' << @user.login.to_s), user_photo_albums_url(@user) %>
+			</li>
+			<% end %>
+			<% unless @user.own_groups.empty? %>
+			<li>
+				<%= link_to (t('group.of_this_user').to_s << ' ' << @user.login.to_s), user_groups_url(@user) %>
+			</li>
+			<% end %>
+			<% unless @user.posts.empty? %>
+			<li>
+				<%= link_to (t('post.of_this_user').to_s << ' ' << @user.login.to_s), user_posts_url(@user) %>
+			</li>
+			<% end %>
+		</ul>
+	</div>
+
+	<h1><%= t "common.profile_entries" %></h1>
+	<%= render '/comments/form' %>
+	<div id="comments">
+		<%= render :partial => '/comments/create' %>
+	</div>
+</div>
+
+<div class="attributes">
+	<div class="profile_info_extended" >
+		<%= render 'profile_info_extended' %>
+	</div>
+	
+	<div class="friends">
+		<%= render :partial => 'friends' %>
+	</div>
+	<div class="friendship_links_bottom">
+		<%= render 'friendship_links_bottom' %>
+	</div>
+</div>
+
+
+
+

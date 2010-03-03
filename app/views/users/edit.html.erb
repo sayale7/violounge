@@ -1,0 +1,7 @@
+<% title t('common.account_change') %>
+<h1><%= t "common.account_change" %></h1>
+<% form_for @user, :url => user_path do |f| %>
+<%= f.error_messages %>
+<%= render :partial => "form", :object => f %>
+<%= f.submit t "common.save" %>
+<% end %>

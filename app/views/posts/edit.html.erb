@@ -1,0 +1,47 @@
+<% title t 'post.edit' %>
+
+<div class="post"><h1><%= t "post.edit"%></h1>
+<%= link_to t('common.back'), post_path(@post) %>
+<%= render :partial => "form" %></div>
+
+<div class="tags">
+<div id="not_tags_of_post">
+	<% form_tag '/posts/add_tags', :id => "add_tags" do %>
+	<% unless @not_in_post_tags.empty?  %>
+	<br/>
+	<h2><%= t('tag.add_tags_to_post') %></h2>
+	<div class="new_click_boxes">
+		<% @not_in_post_tags.each do |tag|  %>
+		<span class="clickable_items_to_add" id="<%= tag.id %>"><%= tag.tag_names.find_by_language(I18n.locale.to_s).name %></span>
+		<% end %>
+	</div>
+	<div class="plain_old_checkboxes">
+		<%= checklist_tag(@not_in_post_tags)  %>
+	</div>
+	<%= hidden_field_tag 'id', @post.id %>
+	<%= submit_tag t("tag.add_to_post"), :class => "clear_both" %>
+	<% end %>
+	<% end %>
+</div>
+
+<div id="tags_of_post">
+	<% form_tag '/posts/remove_tags', :id => "remove_tags" do %>
+	<% unless (@post.tags).empty?  %>
+	<br/>
+	<h2><%= t('tag.remove_tags_from_post') %></h2>
+	<div class="new_click_boxes">
+		<% for tag in (@post.tags) do %>
+		<span class="clickable_items_to_remove" id="<%= tag.id %>"><%= tag.tag_names.find_by_language(I18n.locale.to_s).name %></span>
+		<% end %>
+	</div>
+	<div class="plain_old_checkboxes">
+		<%= checklist_tag(@post.tags)  %>
+	</div>
+	<%= hidden_field_tag 'id', @post.id %>
+	<%= submit_tag t("tag.remove_from_post"), :class => "clear_both" %>
+	<% end %>
+	<% end %>
+</div>
+</div>
+
+

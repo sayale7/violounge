@@ -1,0 +1,22 @@
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+	// ajaxing photo description update
+	$("#edit_photo_<%= @photo.id %>").live("submit", function(){
+		$('#loading_background').removeClass('loading_background_invisible');
+		$('#loading_background').addClass('loading_background_visible');
+		$.post($(this).attr("action"), $(this).serialize(), null, 'script');
+	  	return false;
+	});
+});
+</script>
+<div class="loading"></div>
+<h2><%= t("photo.description") %></h2>
+<% form_for(@photo) do |f| %>
+<br/>
+<p>
+	<%= f.text_area :description, :class  => 'tb_area_dark' %>
+</p>
+<p>
+	<%= f.submit  %>
+</p>
+<% end %>

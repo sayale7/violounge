@@ -1,0 +1,17 @@
+<% title @message.subject %>
+<div id="inbox">
+    <p style="overflow:hidden;">
+        <%= "<strong>Betreff: </strong>" + @message.subject %>
+    </p>
+    <p>
+        <strong>An: </strong>
+        <%= @message.recipients.to_s[2, @message.recipients.to_s.size] %>
+    </p>
+    <p>
+        <%= "<strong>Am: </strong>" + @message.created_at.to_s(:short) %>
+    </p>
+    <br/>
+    <p>
+        <%= simple_format(h @message.body) %>
+    </p>
+</div>

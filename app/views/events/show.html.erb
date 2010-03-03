@@ -1,0 +1,34 @@
+<div id="event_flyer">
+	<% unless @event.flyer_file_name.nil? %>
+	<a href='<%= @event.flyer.url %>' rel='shadowbox'><%= image_tag @event.flyer.url(:small) %></a>
+	<% end %>
+
+</div>
+<div style="width:630px;">
+<h1><%= @event.name %></h1>
+<p>
+    <h3><%= t("event.begin") + ": " %></h3>
+
+	<%= @event.start_at %>
+</p>
+<p>
+   <h3> <%= t("event.end") + ": " %></h3>
+	<%= @event.end_at %>
+</p>
+<p>
+    <h3><%= t("event.spot") + ": " %></h3>
+	<%= @event.spot %>
+</p>
+<p>
+	<h3><%= t('event.url_show') + ": " unless @event.url.nil? %></h3>
+	<%= link_to @event.url, ('http://' + @event.url.to_s), :popup  => true unless @event.url.nil? %>
+</p>
+<p>
+	<h2><%= t('event.description') + ": " unless @event.description.nil? %></h2>
+	<%= simple_format(h @event.description) unless @event.description.nil? %>
+</p>
+<% if can? :manage, @event %>
+<p>
+	<%= link_to t('common.edit'), edit_event_path(@event) %> | 	<%= link_to t('common.delete'), event_path(@event), :method  => :delete, :confirm  => t('common.confirm') %>
+</p>
+<% end %></div>

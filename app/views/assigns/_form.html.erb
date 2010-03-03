@@ -1,0 +1,61 @@
+<div class="left">
+<% form_for @assign do |f| %>
+  <%= f.error_messages %>
+	<% if @assign.assignable_type.to_s.eql?('Job') %>
+  <p>
+    <span style="font-weight:bold"><%= f.label 'sichtbar' %></span><br />
+    <%= f.check_box :visible %>
+  </p>
+	<% end %>
+  <p>
+    <span style="font-weight:bold"><%= f.label 'gehört zu' %></span><br />
+    <%= f.collection_select :parent_id, Assign.find_all_by_assignable_type(@assignable_type), :id, :german_name, :include_blank => true %>
+  </p>
+  <p>
+	<span style="font-weight:bold"><%= f.label :german_name %></span><br />
+	<%= f.text_field :german_name %>
+</p>
+
+<p>
+	<span style="font-weight:bold"><%= f.label :english_name %></span><br />
+	<%= f.text_field :english_name %>
+</p>
+<p>
+	<span style="font-weight:bold"><%= f.label :html_attribute %></span><br />
+   <%= f.select(:html_attribute, [['text_field'], ['text_area'], ['select_tag'], ['select_many'], ['date_select'], ['mail_to'], ['link_to']]) %> 
+</p>
+<p>
+	<% f.fields_for :admin_assign_values do |builder| %>
+	<p>
+		<span style="font-weight:bold"><%= builder.label :german_name %></span>
+		<%= builder.text_field :german_name, :class  => 'tb' %>
+		<br/>
+		<span style="font-weight:bold"><%= builder.label :english_name %></span>
+		<%= builder.text_field :english_name, :class  => 'tb' %>
+		<%= builder.check_box :_destroy %>
+		<%= builder.label :_destroy, t('admin_attribute.remove') %>
+	</p>
+	<% end %>
+		<% unless @assign.html_attribute.to_s.eql?('text_field') || @assign.html_attribute.to_s.eql?('text_area') %>
+			<%= link_to t('admin_attribute.add'), build_admin_values_path(:id  => @assign.id) %>
+			<%= f.hidden_field :assignable_type, :value  => @assignable_type %>
+		<% end %>
+</p>
+
+<%= f.hidden_field :assignable_type, :value  => @assignable_type %>
+<p><%= f.submit "Submit" %></p>
+<% end %>
+</div>
+
+<div class="right">
+	<% for assign in @_assigns %>
+		<h1><%= assign.assign_names.find_by_language(get_locale.to_s).name %></h1>
+		<dl style="padding-left:30px;">
+			<% for assign_child in assign.children %>
+				<dt>
+					<%= assign_child.assign_names.find_by_language(get_locale.to_s).name %>
+				</dt>
+			<% end %>
+		</dl>
+	<% end %>
+</div>

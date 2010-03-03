@@ -1,0 +1,46 @@
+
+	<table>
+		<thead>
+			<tr>
+				<th>
+				</th>
+				<th>
+					<%= t("mail.to") %>
+				</th>
+				<th>
+					<%= t("mail.subject") %>
+				</th>
+				<th>
+					<%= t("mail.received_at") %>
+				</th>
+				<th>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% for message in @messages %>
+			<tr>
+				<td>
+					<%= link_to image_tag("email.jpg", :border=>0), sent_path(message) %>
+				</td>
+				<td>
+					<%= message.recipients.to_s[2, message.recipients.to_s.size] %>
+				</td>
+				<td>
+					<%= message.subject %>
+				</td>
+				<td>
+					<%= message.created_at.strftime("%d. %m. %Y um %H:%M Uhr") %>
+				</td>
+				<td>
+					<div id="edit_messages">
+						<%= link_to image_tag("trash_klein.jpg", :border=>0), :controller => 'sent', :action => 'delete', :id => message.id %>
+					</div>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<div class="pagination">
+		<%= will_paginate @messages %>
+	</div>

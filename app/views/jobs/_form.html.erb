@@ -1,0 +1,65 @@
+
+<div class="job_edit">
+<% form_tag set_job_assign_values_path do %>
+<%= hidden_field_tag :job_id, '', :value  =>  @job.id %>
+<% if current_user && current_user.role?('admin') %>
+
+<p>
+	<strong>Aktiv</strong>
+	<% if @job.active %>
+		<input type="checkbox" name="active" checked="checked" />
+	<% else %>
+		<input type="checkbox" name="active"  />
+	<% end %>
+</p>
+<% end %>
+
+<p>
+	<strong>* <%= label_tag t('job.publishing_date') %></strong><br/>
+	<% unless @job.puplish_date.nil? %>
+	<%= text_field_tag :puplish_date, @job.puplish_date.strftime("%d.%m.%Y"), :class  => 'tb_date' %>
+	<% else %>
+	<%= text_field_tag :puplish_date, @job.puplish_date, :class  => 'tb_date' %>
+	<% end %>
+</p>
+
+<p>
+	<strong>* <%= label_tag t('job.title') %></strong><br/>
+	<%= text_field_tag :title, @job.title, :class  => 'tb' %>
+</p>
+
+<% if request.url.to_s.include?('edit') %>
+
+<% unless all_assigns('Job').empty? %>
+<% all_assigns('Job').each do |job_assign| %>
+
+<p>
+	<span style="font-weight:bold"><%= job_assign.assign_names.find_by_language(get_locale.to_s).name %>
+		<% if job_assign.html_attribute.to_s.eql?('mail_to') %>
+		(<%= t('common.email') %>)
+		<% end %>	
+		<% if job_assign.html_attribute.to_s.eql?('link_to') %>
+		<script type="text/javascript" charset="utf-8">
+			function proof_link(){
+				if(document.getElementById('user_common_www').value != ''){
+					window.open('http://' + document.getElementById('user_common_www').value);
+				}
+			}
+		</script>
+		(<%= t('common.url') %> -> <a href="#" onclick="proof_link();return false;"><%= t('common.proof_link') %></a>)
+		<% end %>
+	</span> 
+	<br/>
+	<%= render '/assigns/job_assigns', :assign  => job_assign  %>
+</p>
+
+<% end %>
+<% end %>
+
+<% end %>
+
+<p><%= submit_tag "Submit" %></p>
+<% end %>
+
+* <%= t('common.duty') %>
+</div>

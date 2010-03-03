@@ -1,0 +1,261 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  common:
+    edit: Edit
+    show: Show
+    back: Back
+    save: Save
+    password_confirmation: Confirm Password
+    password: Password
+    activate: Activate
+    email: Email
+    login: Login
+    logout: Logout
+    login_name: Username
+    remember_me: Remember Me
+    change_password: Change Password
+    account_change: Change My Account
+    my_profile: My Account
+    register: Register
+    confirm_logout: Are you sure, to logout?
+    confirm: Are you sure?
+    country: en
+    blogs: Blogs
+    created: Created at
+    by: by 
+    upload: Upload
+    profile_entries: Pinboard
+    write_new_profile_entries: New Entry
+    create_profile_entry: Create Entry
+    comments: Comments
+    create: Create
+    submit: Save
+    delete: Delete
+    new: New
+    my_albums: My Photo Albums
+    photo_album_name: Name of the Album
+    photo_album_description: Description of the Ablum
+    new_ablum: New Album
+    edit_album: Edit Album
+    create_ablum: Create Album
+    update_album: Update Album Info
+    edit_photo_comment: Edit Photo Comment
+    all_photo_album: Photo albums
+    activated: Your account has been activated
+    delete_success: Deletion was successfull!
+    created: Creation was successfull!
+    updated: Update was successful!
+    max_count_photos: Maximum Count of Images is 10
+    max_count_photos_reached: You have reached the Maximum of 10 Images
+    send_message_to_user: Send this user a message
+    close: Close
+    registered_users: Users
+    search: Search
+    from: From
+    to: To
+    created_at: Created at
+    name: Name
+    description: Description
+    groups: Groups
+    new: New
+    my_groups: My Groups
+    duty: Mandatory Fields
+    clear: Reset Search
+    access_denied: Access Denied
+    destroyed: Successfully deleted
+    guest: Guest
+    events: Events
+    error: An Error Occured
+    service: Service
+    edit_attributes: Edit attributes
+    all_blogs: All Blogs (with Livesearch)
+    manage: Manage
+    fill_in_duty: Pleas fill in Mandatory Fields!
+    visible: Visible for all Users
+    important_notice: Wichtige Information zu Ihrer Privatsphäre
+    the_important_notice: Wenn Sie die Checkbox "Für Alle Benutzer sichtbar" anklicken, kann diese Information auch von allen Benutzern gesehen werden. Wenn Sie die Checkbox nicht anklicken können nur die Benutzer Sie sehen, welche in Ihrer Kontaktliste sind
+    home: Home
+    all: All
+    welcome: Welcome on Violounge.com
+    proof_link: Proof Link
+    url: insert without http://
+    parent_elements: Parent Elements
+  event:
+    begin: Begin
+    end: End
+    spot: Spot
+    name: Name
+    to_calendar: To Event Calendar
+    description: Description
+    new: New Event
+    date_missmatch: End Date can't be before Start
+    url: Homepage (insert without http://)
+    url_show: Homepage
+    flyer: Upload Flyer
+    flyer_format: Formats => jpeg, jpg
+    flyer_size: Size => smaller than 0.5 MB
+    error: Mandatory Fields have to be filled in, and Content Type and Size of the Flyer must be right!
+  group:
+    need_confirm: User need you to confirm, if he want to be a member of your group
+    category: Category
+    founder: Founder
+    new: New Group
+    photo: Upload a Image for your Group
+    attend: Join this Group
+    escape: Quit from Group
+    escaped: Succesfully quit from Group
+    attend_error: Error
+    attended: You successfully joined this group
+    manage_tags: Manage Group Categories
+    of_this_user: Groups of
+    all_of_this_user: All Groups of
+    members: Members
+    member: Member
+  forgot_password:
+    password_reset: Reset Password
+    forgot: Forgot Password?
+    paragraph: Fill out the form below and instructions to reset your password will be emailed to you
+    update_and_login: Update my password and log me in
+    h1_change_my_password: Change My Password
+  profile:
+    login_count: Login Counts
+    last_request: Last Request
+    last_login: Last Login
+    current_login: Current Login
+    last_login_ip: Last Login IP
+    current_login_ip: Current Login IP
+  activation:
+    account_is_active: Your account has been activated.
+    copy_paste_url: If the above URL does not work try copying and pasting it into your browser. If you continue to have problem, please feel free to contact us.
+    click_to_activate: Thank you for creating an account! Click the url below to activate your account!
+    sent_password_request: A request to reset your password has been made. If you did not make this request, simply ignore this email. If you did make this request just click the link below 
+    activate_account: Activate your account
+  mail:
+    from: From
+    to: To
+    subject: Subject
+    received_at: Received at
+    move_to: Move To
+    box: Box
+    inbox_main: Mail
+    inbox: Inbox
+    sent: Sent
+    trash: Trash
+    inbox_trash: Trash (Inbox)
+    sent_trash: Trash (Sent)
+    new: New Message
+  user:
+    gender: Gender
+    title: Title
+    firstname: Firstname
+    lastname: Lastname
+    name: Name
+    street: Street
+    city: City
+    administrative_area: Administrative Area
+    district: District
+    state: State
+    zip: Zip
+    optional_address_attributes: Optionale Adressangaben
+    www: Website
+    phone: Phone
+    address_validation: validate address
+    passwort_reset_instructions: Instructions to reset your password have been emailed to you. Please check your email.
+    passwort_reset_instructions_no_email: No user was found with that email address
+    my_personals: Personalities
+    commons: Contact Info
+    my_blog: My Blog
+    my_blog_archive: My Blog Archive
+    my_profile: My Profile
+    my_account: My Account
+    profile_img_upload: Upload Profile Image
+    profile_img_upload: Upload your Profile Image (smaller than 0.5MB and jpeg, gif or png)
+    my_profile_img: Profile Image
+    register_success: Registration successfull
+    search_field_description: Search for Name, Username or Address of a Registered User
+    manage_assigns: Manage user attributes
+    common: Common
+    add: Add Contact
+    remove: Remove Contact
+    accept: Accept
+    decline: Decline
+    friends: Contacts
+    friend_added: Contact added
+    add_friend_error: Contact could not be added
+    destroyed_friendship: Removed Contact
+    friend_confirm: Contact Requests
+    not_confirmed_yet: Not yet confirmed Contact(s)
+    delete: Quit Violounge.com
+    special_info: Special Info
+  profile_image:
+      created: Image created!
+      error: Image could not be created (should be smaller than 0.5MB and jpeg, gif or png)
+      crop: Cropping Profile Image
+      my_profile_image: My Profile Image
+  post:
+    new: New Post
+    edit: Edit Post
+    abo: Subscribe
+    of_this_user: Blog of
+    title: Title
+    body: Body
+    all_of_this_user: Show me all Posts of 
+    new_comment: New Comment
+    my_posts: My Posts (with Livesearch)
+    manage_tags: Manage Tags
+    search_field_description: Search for Title, Content und Creator of a Blog
+    all: All Posts
+  tag:
+      remove_tags_from_post: Tags of this Post
+      remove_from_post: Remove
+      add_tags_to_post: Available Tags
+      add_to_post: Add
+      german_name: German Name
+      english_name: English Name
+      for: For
+      names: Tagnames
+      parents: Parents of this Tag
+      actual: Current Category
+      sub: Subcategories of
+      super_categories: Super Categories of
+      categories: Categories
+  flash:
+    comment_destroyed: Entry deleted
+    comment_created: Entry created
+    content_blank: Entry can't be blank
+  photo:
+    description: Description of the Image
+    upload: Select max  
+    kind: Images (smaller than 0.5MB and jpeg, gif or png)
+  photo_album:
+      of_this_user: Photoalbums of from
+      full: Full Screen Slideshow
+  service:
+      jobs: Jobs
+      living: Flatsharing
+      changing: Changing
+      search_with_tag: Choose
+  admin_attribute:
+      add: Add
+      remove: Remove
+  job:
+      all: All Jobs
+      manage_assigns: Manage job attributes
+      manage_tags: Manage Job categories
+      title: Jobtitle
+      recent: Recent Jobs
+      new: New Jobinsert
+      manage: Manage Jobs
+      step1: Schritt 1
+      step2: Schritt 2
+      creat_job_insert: Create Job Entry
+      edit_job_insert: Check Job Entry
+      what_are_tags: What are Tags?
+      publish_date: Published at
+      publishing_date: Publishing date
+      categories: Job Categories
+      other_with_category: Similar Jobs
+      quick_nav: Quick Navigation
+      overview: Back to the Overview

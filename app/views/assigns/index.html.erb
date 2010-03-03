@@ -1,0 +1,27 @@
+<% title t('common.edit_attributes') %>
+
+<p><%= link_to 'Reihenfolge der Elternelemente ändern', sort_list_elements_path + '?parent_id=nil;assignable_type=' + @assignable_type.to_s %></p>
+
+<% for assign in @_assigns %>
+	<h1><%= assign.assign_names.find_by_language(get_locale.to_s).name %></h1>
+	<%= link_to 'Bearbeiten', edit_assign_path(assign) %>
+	<% if assign.assignable_type.to_s.eql?('Job') %>
+		<%= link_to 'Löschen', assign, :confirm => 'Sicher?', :method => :delete %>
+	<% end %>
+	<dl style="padding-left:30px;">
+		<% unless assign.children.empty? %>
+			<p><%= link_to 'Reihenfolge der Liste ändern', sort_list_elements_path + '?parent_id=' + assign.id.to_s + ';assignable_type=' + @assignable_type.to_s %></p>
+		<% end %>
+		<% for assign_child in Assign.find_all_by_parent_id(assign.id, :order => 'position') %>
+			<dt>
+				<%= assign_child.assign_names.find_by_language(get_locale.to_s).name %> -
+				<%= link_to 'Bearbeiten', edit_assign_path(assign_child) %> /
+				<%= link_to 'Löschen', assign_child, :confirm => 'Sicher?', :method => :delete %>
+			</dt>
+		<% end %>
+	</dl>
+<% end %>
+
+<br/>
+<br/>
+<%= link_to t('common.new'), '/assigns/new?assignable_type=' + @assignable_type.to_s %>

@@ -1,0 +1,65 @@
+<script type="text/javascript" charset="utf-8">
+function proof_link(){
+	if(document.getElementById('user_common_www').value != ''){
+		window.open('http://' + document.getElementById('user_common_www').value);
+	}
+}
+$(document).ready(function(){
+	$(".tb_date").datepicker({ 
+		dateFormat: 'dd.mm.yy'
+	});
+});
+</script>
+<p><strong><%= t('common.important_notice') %></strong><%= ': ' %><%= t('common.the_important_notice') %></p>
+
+<!-- For User View -->
+<% if @assign.assignable_type.to_s.eql?('User') %>
+<% form_tag set_user_assign_values_path do %>
+<% if get_locale.to_s.eql?('de') %>
+<% title @assign.german_name %>
+<h1><%= @assign.german_name %></h1>
+<% end %>
+<% if get_locale.to_s.eql?('en') %>
+<% title @assign.english_name %>
+<h1><%= @assign.english_name %></h1>
+<% end %>
+<% unless @assign.children.empty? %>
+<% for assign in Assign.find_all_by_parent_id(@assign.id, :order => 'position') %>
+<p>
+	<span style="font-weight:bold"><%= assign.assign_names.find_by_language(get_locale.to_s).name %>
+		<% if assign.html_attribute.to_s.eql?('mail_to') %>
+		(<%= t('common.email') %>)
+		<% end %>
+		<% if assign.html_attribute.to_s.eql?('link_to') %>
+		<script type="text/javascript" charset="utf-8">
+			function proof_link(){
+				if(document.getElementById('user_common_www').value != ''){
+					window.open('http://' + document.getElementById('user_common_www').value);
+				}
+			}
+		</script>
+		(<%= t('common.url') %> -> <a href="#" onclick="proof_link();return false;"><%= t('common.proof_link') %></a>)
+		<br/>
+		<% end %>	
+	</span> 
+	
+	<!-- visible checkbox -->
+	<% if !UserAssignValue.find_by_assignable_id_and_assign_id(current_user.id, assign.id).nil? && UserAssignValue.find_by_assignable_id_and_assign_id(current_user.id, assign.id).visible %>
+		(<%= t('common.visible') %><%= check_box_tag "visible_for_#{assign.id}", 'yes', true %>)
+	<% else %>
+		(<%= t('common.visible') %><%= check_box_tag "visible_for_#{assign.id}", 'yes', false %>)
+	<% end %>
+	
+	<br/>
+	<%= render 'user_assigns', :assign  => assign  %>
+</p>
+<% end %>
+<% end %>
+<%= submit_tag t('common.submit') %>
+<% end %>
+<% end %>
+
+
+
+
+
